@@ -1,0 +1,27 @@
+<h1 class="appName">Keep Notes</h1>
+<div *ngIf="islogged; then homeBlock else loginBlock"></div>
+
+<ng-template #homeBlock>
+    <div class="Cnote">
+        <input class="inp" *ngIf="visible" type="text" placeholder="title" [(ngModel)]="task.title">
+        <br><input class="inp" (click)="createNote()" type="text" placeholder="Enter new task" [(ngModel)]="task.taskstr"/>
+        <br><button class="addbtn" *ngIf="visible" (click)="addTask()">Add task</button>
+    </div>
+    <div class="outer">
+    <div class="note" *ngFor="let item of list">
+        <span class="tasktitle">{{item.title}}</span>
+        <br>
+        <span class="task">{{ item.task }}</span>
+        <br>
+        <button class="deletebtn" (click)="removeTask(item._id)">delete</button>
+        <br>
+    </div>
+    </div>
+</ng-template>
+<ng-template  #loginBlock >
+    <div class="Cnote">
+        <input class="inp"  type="text" placeholder="userid" [(ngModel)]="userid" required>
+        <br><input class="inp" (click)="createNote()" type="birthdate" placeholder="birthdate" [(ngModel)]="birthdate" required/>
+        <br><button class="addbtn"  (click)="login()"> join </button>
+    </div>
+</ng-template>
